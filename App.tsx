@@ -3,7 +3,8 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import useCachedResources from "./hooks/useCachedResources";
 import useColorScheme from "./hooks/useColorScheme";
-import Navigation from "./navigation";
+import StackNavigation from "./navigation";
+import DrawerNavigator from "./navigation/DrawerNavigator";
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -14,7 +15,7 @@ export default function App() {
   } else {
     return (
       <SafeAreaProvider>
-        <Navigation colorScheme={colorScheme} />
+        <StackNavigation colorScheme={colorScheme} />
         <StatusBar />
       </SafeAreaProvider>
     );
