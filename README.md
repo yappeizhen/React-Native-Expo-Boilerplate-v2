@@ -3,7 +3,7 @@ Template to quickly get started on new React Native Expo projects.
 
 ## Features
 - [x] Light and dark themes that match native system display
-- [x] Swipeable bottom tab navigation
+- [x] Swipeable bottom tab navigation (default)
 - [x] Shifting bottom tab navigation
 - [x] Stack navigation and modal
 - [x] Drawer navigation
@@ -15,9 +15,10 @@ Template to quickly get started on new React Native Expo projects.
 ## Getting Started
 
 #### `npm install`
+
 Installs all dependencies or devDependencies from package.json file
 
-#### `npm start`
+#### `npm run start`
 
 Runs your app in development mode.
 
