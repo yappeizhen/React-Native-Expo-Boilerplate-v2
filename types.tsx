@@ -49,6 +49,7 @@ export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
 export type RootDrawerParamList = {
   Root: undefined;
   AboutUs: undefined;
+  Logout: undefined;
 };
 
 export type RootDrawerScreenProps<Screen extends keyof RootDrawerParamList> =

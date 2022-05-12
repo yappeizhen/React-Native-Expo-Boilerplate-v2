@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Pressable } from "react-native";
 
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
 import DrawerMenuButton from "../components/DrawerMenuButton";
@@ -9,6 +9,7 @@ import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
 import AboutUsScreen from "../screens/AboutUsScreen";
 import { RootDrawerParamList } from "../types";
+import AuthStackNavigator from "./AuthStackNavigator";
 import HomeStackNavigator from "./HomeStackNavigator";
 
 const Drawer = createDrawerNavigator<RootDrawerParamList>();
@@ -63,6 +64,18 @@ export default function RootDrawerNavigator() {
             <Ionicons name="people-outline" size={20} color={color} />
           ),
           title: "About Us",
+        }}
+      />
+      <Drawer.Screen
+        name="Logout"
+        component={AuthStackNavigator}
+        options={{
+          drawerIcon: ({ color }) => (
+            <MaterialIcons name="logout" size={20} color={color} />
+          ),
+          headerShown: false,
+          swipeEnabled: false,
+          unmountOnBlur: true,
         }}
       />
     </Drawer.Navigator>
