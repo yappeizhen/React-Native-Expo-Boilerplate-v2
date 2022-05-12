@@ -1,10 +1,9 @@
 import * as React from "react";
 
-import { AntDesign } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
 import DrawerMenuButton from "../components/DrawerMenuButton";
-import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
 import AboutUsScreen from "../screens/AboutUsScreen";
 import HomeScreen from "../screens/HomeScreen";
@@ -33,6 +32,9 @@ export default function DrawerNavigator() {
         name="Home"
         component={HomeScreen}
         options={() => ({
+          drawerIcon: ({ color }) => (
+            <Ionicons name="home-outline" size={20} color={color} />
+          ),
           title: "Home",
           headerShown: false,
         })}
@@ -40,7 +42,12 @@ export default function DrawerNavigator() {
       <Drawer.Screen
         name="AboutUs"
         component={AboutUsScreen}
-        options={() => ({ title: "About Us" })}
+        options={() => ({
+          drawerIcon: ({ color }) => (
+            <Ionicons name="people-outline" size={20} color={color} />
+          ),
+          title: "About Us",
+        })}
       />
     </Drawer.Navigator>
   );
