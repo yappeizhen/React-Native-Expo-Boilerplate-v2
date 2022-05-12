@@ -1,9 +1,10 @@
 import * as React from "react";
 import { Pressable } from "react-native";
 
-import { AntDesign } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { DrawerActions } from "@react-navigation/native";
 
 import DrawerMenuButton from "../components/DrawerMenuButton";
@@ -18,49 +19,19 @@ import { RootTabParamList, RootTabScreenProps } from "../types";
  * A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.
  * https://reactnavigation.org/docs/bottom-tab-navigator
  */
-const BottomTab = createBottomTabNavigator<RootTabParamList>();
+const BottomTab = createMaterialBottomTabNavigator<RootTabParamList>();
 
-export default function BottomTabNavigator() {
+export default function BottomTabV1() {
   const colorScheme = useColorScheme();
-
   return (
-    <BottomTab.Navigator
-      initialRouteName="TabOne"
-      screenOptions={({ navigation }) => ({
-        tabBarActiveTintColor: Colors[colorScheme].tint,
-        headerLeft: () => {
-          return (
-            <DrawerMenuButton
-              onPress={() => {
-                navigation.dispatch(DrawerActions.openDrawer());
-              }}
-            />
-          );
-        },
-      })}
-    >
+    <BottomTab.Navigator initialRouteName="TabOne" shifting={true}>
       <BottomTab.Screen
         name="TabOne"
         component={TabOneScreen}
-        options={({ navigation }: RootTabScreenProps<"TabOne">) => ({
+        options={{
           title: "Tab One",
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate("Modal")}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}
-            >
-              <FontAwesome
-                name="info-circle"
-                size={25}
-                color={Colors[colorScheme].text}
-                style={{ marginRight: 15 }}
-              />
-            </Pressable>
-          ),
-        })}
+        }}
       />
       <BottomTab.Screen
         name="TabTwo"
@@ -89,5 +60,5 @@ function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>["name"];
   color: string;
 }) {
-  return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
+  return <FontAwesome size={20} style={{ marginBottom: -3 }} {...props} />;
 }
