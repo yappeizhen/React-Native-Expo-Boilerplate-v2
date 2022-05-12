@@ -16,6 +16,14 @@ declare global {
   }
 }
 
+export type AuthStackParamList = {
+  Login: NavigatorScreenParams<RootTabParamList> | undefined;
+  Register: undefined;
+};
+
+export type AuthStackScreenProps<Screen extends keyof AuthStackParamList> =
+  NativeStackScreenProps<AuthStackParamList, Screen>;
+
 export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
   Modal: undefined;

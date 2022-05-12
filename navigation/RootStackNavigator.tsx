@@ -27,7 +27,10 @@ export default function RootStackNavigator() {
         options={{ title: "Oops!" }}
       />
       <Stack.Group
-        screenOptions={{ presentation: "modal", gestureEnabled: true }}
+        screenOptions={{
+          presentation: "modal",
+          gestureEnabled: true,
+        }}
       >
         <Stack.Screen name="Modal" component={ModalScreen} />
       </Stack.Group>

@@ -16,7 +16,6 @@ import { RootTabParamList } from "../types";
 const BottomTab = createMaterialBottomTabNavigator<RootTabParamList>();
 
 export default function BottomTabV1() {
-  const colorScheme = useColorScheme();
   return (
     <BottomTab.Navigator initialRouteName="TabOne" shifting={true}>
       <BottomTab.Screen

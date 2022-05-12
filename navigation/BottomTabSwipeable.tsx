@@ -15,7 +15,6 @@ import { RootTabParamList } from "../types";
 const BottomTab = createMaterialTopTabNavigator<RootTabParamList>();
 
 export default function BottomTabNavigator() {
-  const colorScheme = useColorScheme();
   return (
     <BottomTab.Navigator
       initialRouteName="TabOne"
