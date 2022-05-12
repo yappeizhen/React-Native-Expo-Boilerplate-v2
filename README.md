@@ -14,7 +14,10 @@ Template to quickly get started on new React Native Expo projects.
 
 ## Getting Started
 
-### `npm start`
+#### `npm install`
+Installs all dependencies or devDependencies from package.json file
+
+#### `npm start`
 
 Runs your app in development mode.
 
