@@ -6,10 +6,10 @@ Template to quickly get started on new React Native projects.
 - [x] Shifting bottom tab navigation
 - [x] Stack navigation and modal
 - [x] Drawer navigation
-- [] Firebase backend
-- [] Sign up page
-- [] Log in and log out
-- [] Profile page
+- [ ] Firebase backend
+- [ ] Sign up page
+- [ ] Log in and log out
+- [ ] Profile page
 
 ## Getting Started
 
