@@ -1,9 +1,12 @@
 import * as React from "react";
 import { Pressable } from "react-native";
 
+import { AntDesign } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { DrawerActions } from "@react-navigation/native";
 
+import DrawerMenuButton from "../components/DrawerMenuButton";
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
 import TabOneScreen from "../screens/TabOneScreen";
@@ -23,9 +26,18 @@ export default function BottomTabNavigator() {
   return (
     <BottomTab.Navigator
       initialRouteName="TabOne"
-      screenOptions={{
+      screenOptions={({ navigation }) => ({
         tabBarActiveTintColor: Colors[colorScheme].tint,
-      }}
+        headerLeft: () => {
+          return (
+            <DrawerMenuButton
+              onPress={() => {
+                navigation.dispatch(DrawerActions.openDrawer());
+              }}
+            />
+          );
+        },
+      })}
     >
       <BottomTab.Screen
         name="TabOne"
