@@ -12,26 +12,27 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 declare global {
   namespace ReactNavigation {
-    interface RootParamList extends RootStackParamList {}
+    interface RootParamList extends HomeStackParamList {}
   }
 }
 
 export type AuthStackParamList = {
-  Login: NavigatorScreenParams<RootTabParamList> | undefined;
+  Login: undefined;
   Register: undefined;
+  RootDrawer: undefined;
 };
 
 export type AuthStackScreenProps<Screen extends keyof AuthStackParamList> =
   NativeStackScreenProps<AuthStackParamList, Screen>;
 
-export type RootStackParamList = {
-  Root: NavigatorScreenParams<RootTabParamList> | undefined;
+export type HomeStackParamList = {
+  Home: NavigatorScreenParams<RootTabParamList> | undefined;
   Modal: undefined;
   NotFound: undefined;
 };
 
-export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
-  NativeStackScreenProps<RootStackParamList, Screen>;
+export type HomeStackScreenProps<Screen extends keyof HomeStackParamList> =
+  NativeStackScreenProps<HomeStackParamList, Screen>;
 
 export type RootTabParamList = {
   TabOne: undefined;
@@ -42,13 +43,13 @@ export type RootTabParamList = {
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
   CompositeScreenProps<
     BottomTabScreenProps<RootTabParamList, Screen>,
-    NativeStackScreenProps<RootStackParamList>
+    NativeStackScreenProps<HomeStackParamList>
   >;
 
-export type DrawerParamList = {
-  Home: undefined;
+export type RootDrawerParamList = {
+  Root: undefined;
   AboutUs: undefined;
 };
 
-export type DrawerScreenProps<Screen extends keyof DrawerParamList> =
-  NativeStackScreenProps<DrawerParamList, Screen>;
+export type RootDrawerScreenProps<Screen extends keyof RootDrawerParamList> =
+  NativeStackScreenProps<RootDrawerParamList, Screen>;

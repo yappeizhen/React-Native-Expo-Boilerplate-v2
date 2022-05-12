@@ -1,23 +1,23 @@
 import * as React from "react";
 import { Pressable } from "react-native";
 
-import { FontAwesome, Ionicons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
 import DrawerMenuButton from "../components/DrawerMenuButton";
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
 import AboutUsScreen from "../screens/AboutUsScreen";
-import HomeScreen from "../screens/HomeScreen";
-import { DrawerParamList } from "../types";
+import { RootDrawerParamList } from "../types";
+import HomeStackNavigator from "./HomeStackNavigator";
 
-const Drawer = createDrawerNavigator<DrawerParamList>();
+const Drawer = createDrawerNavigator<RootDrawerParamList>();
 
-export default function DrawerNavigator() {
+export default function RootDrawerNavigator() {
   const colorScheme = useColorScheme();
   return (
     <Drawer.Navigator
-      initialRouteName="Home"
+      initialRouteName="Root"
       screenOptions={({ navigation }) => ({
         headerLeft: () => {
           return (
@@ -31,8 +31,8 @@ export default function DrawerNavigator() {
       })}
     >
       <Drawer.Screen
-        name="Home"
-        component={HomeScreen}
+        name="Root"
+        component={HomeStackNavigator}
         options={({ navigation }) => ({
           drawerIcon: ({ color }) => (
             <Ionicons name="home-outline" size={20} color={color} />
