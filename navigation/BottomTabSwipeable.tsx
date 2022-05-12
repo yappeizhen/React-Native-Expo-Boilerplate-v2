@@ -1,19 +1,13 @@
 import * as React from "react";
-import { Pressable } from "react-native";
 
 import { FontAwesome } from "@expo/vector-icons";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import { DrawerActions } from "@react-navigation/native";
 
-import DrawerMenuButton from "../components/DrawerMenuButton";
-import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
 import TabOneScreen from "../screens/TabOneScreen";
 import TabThreeScreen from "../screens/TabThreeScreen";
 import TabTwoScreen from "../screens/TabTwoScreen";
-import { RootTabParamList, RootTabScreenProps } from "../types";
+import { RootTabParamList } from "../types";
 
 /**
  * This navigator is horizontally swipeable and can be placed at the top or bottom of the screen

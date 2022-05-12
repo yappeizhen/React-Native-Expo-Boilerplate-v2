@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Header } from "react-native/Libraries/NewAppScreen";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
