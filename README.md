@@ -1,5 +1,5 @@
-# React-Native-Boilerplate-2
-Template to quickly get started on new React Native projects. 
+# React Native Expo Boilerplate
+Template to quickly get started on new React Native Expo projects. 
 
 ## Features
 - [x] Light and dark themes
