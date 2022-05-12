@@ -17,7 +17,13 @@ const BottomTab = createMaterialTopTabNavigator<RootTabParamList>();
 export default function BottomTabNavigator() {
   const colorScheme = useColorScheme();
   return (
-    <BottomTab.Navigator initialRouteName="TabOne" tabBarPosition="bottom">
+    <BottomTab.Navigator
+      initialRouteName="TabOne"
+      tabBarPosition="bottom"
+      screenOptions={{
+        tabBarLabelStyle: { textTransform: "none" },
+      }}
+    >
       <BottomTab.Screen
         name="TabOne"
         component={TabOneScreen}
