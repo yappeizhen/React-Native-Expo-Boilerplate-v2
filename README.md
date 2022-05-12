@@ -2,7 +2,7 @@
 Template to quickly get started on new React Native Expo projects. 
 
 ## Features
-- [x] Light and dark themes
+- [x] Light and dark themes that match native system display
 - [x] Swipeable bottom tab navigation
 - [x] Shifting bottom tab navigation
 - [x] Stack navigation and modal
