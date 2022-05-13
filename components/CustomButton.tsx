@@ -22,7 +22,8 @@ export default function CustomButton({
   uppercase = false,
   onPress,
 }: Props) {
-  color = color ?? Colors.primaryColor;
+  const colorScheme = useColorScheme();
+  color = color ?? Colors[colorScheme].tint;
 
   const styles = StyleSheet.create({
     customButton: {

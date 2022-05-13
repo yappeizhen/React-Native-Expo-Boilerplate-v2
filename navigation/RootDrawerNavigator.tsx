@@ -13,7 +13,7 @@ import AuthStackNavigator from "./AuthStackNavigator";
 import HomeStackNavigator from "./HomeStackNavigator";
 
 const Drawer = createDrawerNavigator<RootDrawerParamList>();
-let isSignedIn = true;
+let isSignedIn = false;
 
 const renderAuthStack = () => {
   return (
