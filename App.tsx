@@ -9,8 +9,8 @@ import {
 
 import useCachedResources from "./hooks/useCachedResources";
 import useColorScheme from "./hooks/useColorScheme";
-import AuthStackNavigator from "./navigation/AuthStackNavigator";
 import LinkingConfiguration from "./navigation/LinkingConfiguration";
+import RootDrawerNavigator from "./navigation/RootDrawerNavigator";
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -25,7 +25,7 @@ export default function App() {
           linking={LinkingConfiguration}
           theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
         >
-          <AuthStackNavigator />
+          <RootDrawerNavigator />
         </NavigationContainer>
         <StatusBar />
       </SafeAreaProvider>

@@ -1,7 +1,7 @@
 import * as React from "react";
-import { Pressable } from "react-native";
+import { ColorSchemeName, Pressable } from "react-native";
 
-import { Ionicons, MaterialIcons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
 import DrawerMenuButton from "../components/DrawerMenuButton";
@@ -13,24 +13,25 @@ import AuthStackNavigator from "./AuthStackNavigator";
 import HomeStackNavigator from "./HomeStackNavigator";
 
 const Drawer = createDrawerNavigator<RootDrawerParamList>();
+let isSignedIn = false;
 
-export default function RootDrawerNavigator() {
-  const colorScheme = useColorScheme();
+const renderAuthStack = () => {
   return (
-    <Drawer.Navigator
-      initialRouteName="Root"
-      screenOptions={({ navigation }) => ({
-        headerLeft: () => {
-          return (
-            <DrawerMenuButton
-              onPress={() => {
-                navigation.openDrawer();
-              }}
-            />
-          );
-        },
-      })}
-    >
+    <Drawer.Screen
+      name="AuthStack"
+      component={AuthStackNavigator}
+      options={{
+        title: "Logout",
+        headerShown: false,
+        swipeEnabled: false,
+        unmountOnBlur: true,
+      }}
+    />
+  );
+};
+const renderRootStack = (colorScheme: NonNullable<ColorSchemeName>) => {
+  return (
+    <>
       <Drawer.Screen
         name="Root"
         component={HomeStackNavigator}
@@ -66,18 +67,27 @@ export default function RootDrawerNavigator() {
           title: "About Us",
         }}
       />
-      <Drawer.Screen
-        name="Logout"
-        component={AuthStackNavigator}
-        options={{
-          drawerIcon: ({ color }) => (
-            <MaterialIcons name="logout" size={20} color={color} />
-          ),
-          headerShown: false,
-          swipeEnabled: false,
-          unmountOnBlur: true,
-        }}
-      />
+    </>
+  );
+};
+export default function RootDrawerNavigator() {
+  const colorScheme = useColorScheme();
+  return (
+    <Drawer.Navigator
+      initialRouteName="Root"
+      screenOptions={({ navigation }) => ({
+        headerLeft: () => {
+          return (
+            <DrawerMenuButton
+              onPress={() => {
+                navigation.openDrawer();
+              }}
+            />
+          );
+        },
+      })}
+    >
+      {!isSignedIn ? renderAuthStack() : renderRootStack(colorScheme)}
     </Drawer.Navigator>
   );
 }

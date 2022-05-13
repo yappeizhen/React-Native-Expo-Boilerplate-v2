@@ -19,7 +19,6 @@ declare global {
 export type AuthStackParamList = {
   Login: undefined;
   Register: undefined;
-  RootDrawer: undefined;
 };
 
 export type AuthStackScreenProps<Screen extends keyof AuthStackParamList> =
@@ -47,9 +46,9 @@ export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
   >;
 
 export type RootDrawerParamList = {
+  AuthStack: undefined;
   Root: undefined;
   AboutUs: undefined;
-  Logout: undefined;
 };
 
 export type RootDrawerScreenProps<Screen extends keyof RootDrawerParamList> =

@@ -14,7 +14,7 @@ export default function LoginScreen({ navigation }: any) {
         color={Colors[colorScheme].tint}
         style={{ width: 100, marginBottom: 12 }}
         onPress={() => {
-          navigation.navigate("RootDrawer", { name: "RootDrawer" });
+          navigation.navigate("Register", { name: "Register" });
         }}
       >
         SIGN IN
