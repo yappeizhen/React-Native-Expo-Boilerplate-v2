@@ -1,5 +1,4 @@
-# React Native Expo Boilerplate
-Template to quickly get started on new React Native Expo projects. 
+# Strawberry-Brainhack2022
 
 ## Features
 - [x] Light and dark themes that match native system display
@@ -11,7 +10,8 @@ Template to quickly get started on new React Native Expo projects.
 - [x] Sign up page
 - [x] Basic log in and log out
 - [ ] Input validation
-- [ ] Profile page
+- [ ] Success and error messages
+- [ ] Loading pages
 
 ## Getting Started
 
@@ -23,7 +23,7 @@ Installs all dependencies or devDependencies from package.json file
 
 Runs your app in development mode.
 
-Open it in the [Expo app](https://expo.io) on your phone to view it by scanning the displayed QR code upon running. It will reload if you save edits to your files, and you will see build errors and logs in the terminal.
+Open it in the [Expo Go app](https://expo.io) on your phone to view it by scanning the displayed QR code upon running. It will reload if you save edits to your files, and you will see build errors and logs in the terminal.
 
 Sometimes you may need to reset or clear the React Native packager's cache. To do so, you can pass the `--reset-cache` flag to the start script:
 
@@ -46,7 +46,15 @@ Like `npm start`, but also attempts to open your app in the iOS Simulator if you
 Like `npm start`, but also attempts to open your app on a connected Android device or emulator. Requires an installation of Android build tools (see [React Native docs](https://facebook.github.io/react-native/docs/getting-started.html) for detailed setup). We also recommend installing Genymotion as your Android emulator. Once you've finished setting up the native build environment, there are two options for making the right copy of `adb` available to Create React Native App:
 
 ## Personalisation
+
 Use `toggles.ts` in the src folder to configure customisations such as enabling authentication, and switching between bottom tab configurations.
+
+### Authentication and Firebase
+
+Create a [new firebase webapp](console.firebase.google.com) and add the firebaseConfig details to the file firebase.js
+
+<img width="517" alt="image" src="https://user-images.githubusercontent.com/66234273/170323452-8b7be8ad-849f-4482-a832-37806845ed7c.png">
+<img width="346" alt="image" src="https://user-images.githubusercontent.com/66234273/170323809-f8b5a6ca-9ef1-491d-a483-b11d66bef7ef.png">
 
 ## Hooks
 
@@ -57,3 +65,4 @@ Checks if the user is logged in, and if so, returns the corresponding user infor
 #### useColorScheme
 
 Checks the color scheme (dark or light) of the user's device
+
