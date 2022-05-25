@@ -7,13 +7,13 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import { RootDrawerParamList } from "../../types";
 import DrawerMenuButton from "../components/DrawerMenuButton";
 import Colors from "../constants/Colors";
+import { useAuthState } from "../hooks/useAuthState";
 import useColorScheme from "../hooks/useColorScheme";
 import AboutUsScreen from "../screens/AboutUsScreen";
 import AuthStackNavigator from "./AuthStackNavigator";
 import HomeStackNavigator from "./HomeStackNavigator";
 
 const Drawer = createDrawerNavigator<RootDrawerParamList>();
-let isSignedIn = false;
 
 const renderAuthStack = () => {
   return (
@@ -72,6 +72,8 @@ const renderAppStack = (colorScheme: NonNullable<ColorSchemeName>) => {
 };
 export default function RootDrawerNavigator() {
   const colorScheme = useColorScheme();
+  const { user } = useAuthState();
+
   return (
     <Drawer.Navigator
       initialRouteName="Root"
@@ -87,7 +89,7 @@ export default function RootDrawerNavigator() {
         },
       })}
     >
-      {!isSignedIn ? renderAuthStack() : renderAppStack(colorScheme)}
+      {user ? renderAppStack(colorScheme) : renderAuthStack()}
     </Drawer.Navigator>
   );
 }
