@@ -1,3 +1,4 @@
+import { signInWithEmailAndPassword } from "firebase/auth";
 import React from "react";
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
@@ -5,7 +6,7 @@ import { StyleSheet, View } from "react-native";
 import CustomButton from "../components/CustomButton";
 import CustomTextInput from "../components/CustomInputText";
 import Colors from "../constants/Colors";
-import * as firebase from '../firebase/firebase';
+import * as firebase from "../firebase/firebase";
 import useColorScheme from "../hooks/useColorScheme";
 
 export default function LoginScreen({ navigation }: any) {
@@ -13,9 +14,17 @@ export default function LoginScreen({ navigation }: any) {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
+  const auth = firebase.auth;
   const handleLogin = () => {
-    
-  }
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log("User signed in!");
+      })
+      .catch((error: any) => {
+        console.error(error.message);
+      });
+  };
 
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
@@ -27,10 +36,11 @@ export default function LoginScreen({ navigation }: any) {
           marginBottom: 36,
         }}
       >
-        <CustomTextInput label="Email" onChangeText={() => setEmail(email)} />
+        <CustomTextInput label="Email" onChangeText={setEmail} value={email} />
         <CustomTextInput
           label="Password"
-          onChangeText={() => setPassword(password)}
+          onChangeText={setPassword}
+          value={password}
         />
       </View>
       <View
@@ -43,9 +53,7 @@ export default function LoginScreen({ navigation }: any) {
         <CustomButton
           mode="contained"
           style={[styles.button, { marginBottom: 12 }]}
-          onPress={() => {
-            navigation.navigate("Register", { name: "Register" });
-          }}
+          onPress={handleLogin}
         >
           SIGN IN
         </CustomButton>
