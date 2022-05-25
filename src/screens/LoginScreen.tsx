@@ -6,7 +6,7 @@ import { StyleSheet, View } from "react-native";
 import CustomButton from "../components/CustomButton";
 import CustomTextInput from "../components/CustomInputText";
 import Colors from "../constants/Colors";
-import * as firebase from "../firebase/firebase";
+import { auth } from "../firebase/firebase";
 import useColorScheme from "../hooks/useColorScheme";
 
 export default function LoginScreen({ navigation }: any) {
@@ -14,12 +14,11 @@ export default function LoginScreen({ navigation }: any) {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  const auth = firebase.auth;
   const handleLogin = () => {
-    signInWithEmailAndPassword(auth, email, password)
+    signInWithEmailAndPassword(auth, email.trim(), password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log("User signed in!");
+        console.log(`${user.email} signed in!`);
       })
       .catch((error: any) => {
         console.error(error.message);

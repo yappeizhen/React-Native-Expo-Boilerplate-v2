@@ -1,12 +1,19 @@
+import { signOut } from "firebase/auth";
 import * as React from "react";
 import { ColorSchemeName, Pressable } from "react-native";
 
-import { Ionicons } from "@expo/vector-icons";
-import { createDrawerNavigator } from "@react-navigation/drawer";
+import { Ionicons, SimpleLineIcons } from "@expo/vector-icons";
+import {
+  DrawerContentScrollView,
+  DrawerItem,
+  DrawerItemList,
+  createDrawerNavigator,
+} from "@react-navigation/drawer";
 
 import { RootDrawerParamList } from "../../types";
 import DrawerMenuButton from "../components/DrawerMenuButton";
 import Colors from "../constants/Colors";
+import { auth } from "../firebase/firebase";
 import { useAuthState } from "../hooks/useAuthState";
 import useColorScheme from "../hooks/useColorScheme";
 import AboutUsScreen from "../screens/AboutUsScreen";
@@ -15,23 +22,50 @@ import HomeStackNavigator from "./HomeStackNavigator";
 
 const Drawer = createDrawerNavigator<RootDrawerParamList>();
 
-const renderAuthStack = () => {
-  return (
-    <Drawer.Screen
-      name="AuthStack"
-      component={AuthStackNavigator}
-      options={{
-        title: "Logout",
-        headerShown: false,
-        swipeEnabled: false,
-        unmountOnBlur: true,
-      }}
-    />
-  );
-};
 const renderAppStack = (colorScheme: NonNullable<ColorSchemeName>) => {
+  const handleLogout = () => {
+    signOut(auth)
+      .then(() => {
+        console.log("Successfully logged out");
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+
   return (
-    <>
+    <Drawer.Navigator
+      initialRouteName="Root"
+      screenOptions={({ navigation }) => ({
+        headerLeft: () => {
+          return (
+            <DrawerMenuButton
+              onPress={() => {
+                navigation.openDrawer();
+              }}
+            />
+          );
+        },
+      })}
+      drawerContent={(props) => {
+        return (
+          <DrawerContentScrollView {...props}>
+            <DrawerItemList {...props} />
+            <DrawerItem
+              label="Logout"
+              onPress={handleLogout}
+              icon={() => (
+                <SimpleLineIcons
+                  name="logout"
+                  size={20}
+                  color={Colors[colorScheme].text}
+                />
+              )}
+            />
+          </DrawerContentScrollView>
+        );
+      }}
+    >
       <Drawer.Screen
         name="Root"
         component={HomeStackNavigator}
@@ -67,29 +101,15 @@ const renderAppStack = (colorScheme: NonNullable<ColorSchemeName>) => {
           title: "About Us",
         }}
       />
-    </>
+    </Drawer.Navigator>
   );
 };
 export default function RootDrawerNavigator() {
   const colorScheme = useColorScheme();
   const { user } = useAuthState();
-
-  return (
-    <Drawer.Navigator
-      initialRouteName="Root"
-      screenOptions={({ navigation }) => ({
-        headerLeft: () => {
-          return (
-            <DrawerMenuButton
-              onPress={() => {
-                navigation.openDrawer();
-              }}
-            />
-          );
-        },
-      })}
-    >
-      {user ? renderAppStack(colorScheme) : renderAuthStack()}
-    </Drawer.Navigator>
-  );
+  if (user) {
+    return renderAppStack(colorScheme);
+  } else {
+    return <AuthStackNavigator />;
+  }
 }
