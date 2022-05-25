@@ -1,20 +1,20 @@
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import React from "react";
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
+import { Text } from "react-native-paper";
 
 import CustomButton from "../components/CustomButton";
 import CustomTextInput from "../components/CustomInputText";
 import * as firebase from "../firebase/firebase";
-import useColorScheme from "../hooks/useColorScheme";
 
-export default function LoginScreen({ navigation }: any) {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+export default function LoginScreen() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
+  const auth = firebase.auth;
   const handleSignup = () => {
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
+    createUserWithEmailAndPassword(auth, email, password)
       .then(() => {
         console.log("User account created and signed in!");
       })
@@ -41,10 +41,11 @@ export default function LoginScreen({ navigation }: any) {
           marginBottom: 36,
         }}
       >
-        <CustomTextInput label="Email" onChangeText={() => setEmail(email)} />
+        <CustomTextInput label="Email" onChangeText={setEmail} value={email} />
         <CustomTextInput
           label="Password"
-          onChangeText={() => setPassword(password)}
+          onChangeText={setPassword}
+          value={password}
         />
       </View>
       <View
