@@ -13,7 +13,7 @@ export default function LoginScreen() {
 
   const auth = firebase.auth;
   const handleSignup = () => {
-    createUserWithEmailAndPassword(auth, email, password)
+    createUserWithEmailAndPassword(auth, email.trim(), password)
       .then(() => {
         console.log("User account created and signed in!");
       })
