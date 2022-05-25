@@ -4,16 +4,16 @@ import { ColorSchemeName, Pressable } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
+import { RootDrawerParamList } from "../../types";
 import DrawerMenuButton from "../components/DrawerMenuButton";
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
 import AboutUsScreen from "../screens/AboutUsScreen";
-import { RootDrawerParamList } from "../types";
 import AuthStackNavigator from "./AuthStackNavigator";
 import HomeStackNavigator from "./HomeStackNavigator";
 
 const Drawer = createDrawerNavigator<RootDrawerParamList>();
-let isSignedIn = true;
+let isSignedIn = false;
 
 const renderAuthStack = () => {
   return (
@@ -29,7 +29,7 @@ const renderAuthStack = () => {
     />
   );
 };
-const renderRootStack = (colorScheme: NonNullable<ColorSchemeName>) => {
+const renderAppStack = (colorScheme: NonNullable<ColorSchemeName>) => {
   return (
     <>
       <Drawer.Screen
@@ -87,7 +87,7 @@ export default function RootDrawerNavigator() {
         },
       })}
     >
-      {!isSignedIn ? renderAuthStack() : renderRootStack(colorScheme)}
+      {!isSignedIn ? renderAuthStack() : renderAppStack(colorScheme)}
     </Drawer.Navigator>
   );
 }
