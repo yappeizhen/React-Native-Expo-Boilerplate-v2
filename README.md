@@ -9,7 +9,9 @@ Template to quickly get started on new React Native Expo projects.
 - [x] Drawer navigation
 - [x] Firebase backend
 - [x] Sign up page
-- [x] Log in and log out
+- [x] Basic log in and log out
+- [ ] Input validation
+- [ ] Google auth
 - [ ] Profile page
 
 ## Getting Started
