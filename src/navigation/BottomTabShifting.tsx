@@ -14,7 +14,7 @@ import TabTwoScreen from "../screens/TabTwoScreen";
  */
 const BottomTab = createMaterialBottomTabNavigator<RootTabParamList>();
 
-export default function BottomTabV1() {
+export default function BottomTabShifting() {
   return (
     <BottomTab.Navigator initialRouteName="TabOne" shifting={true}>
       <BottomTab.Screen
