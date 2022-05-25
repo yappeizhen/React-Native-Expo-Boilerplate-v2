@@ -52,17 +52,21 @@ const renderAppStack = (colorScheme: NonNullable<ColorSchemeName>) => {
         return (
           <DrawerContentScrollView {...props}>
             <DrawerItemList {...props} />
-            <DrawerItem
-              label="Logout"
-              onPress={handleLogout}
-              icon={() => (
-                <SimpleLineIcons
-                  name="logout"
-                  size={20}
-                  color={Colors[colorScheme].text}
-                />
-              )}
-            />
+            {toggles.enableAuth ? (
+              <DrawerItem
+                label="Logout"
+                onPress={handleLogout}
+                icon={() => (
+                  <SimpleLineIcons
+                    name="logout"
+                    size={20}
+                    color={Colors[colorScheme].text}
+                  />
+                )}
+              />
+            ) : (
+              <></>
+            )}
           </DrawerContentScrollView>
         );
       }}
