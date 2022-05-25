@@ -39,7 +39,7 @@ export default function CustomTextInput({
 
   const styles = StyleSheet.create({
     customInputText: {
-      width: 200,
+      width: 260,
       backgroundColor: "transparent",
     },
   });

@@ -1,22 +1,27 @@
 import * as React from "react";
 
 import { FontAwesome } from "@expo/vector-icons";
-import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 
+import { RootTabParamList } from "../../types";
 import TabOneScreen from "../screens/TabOneScreen";
 import TabThreeScreen from "../screens/TabThreeScreen";
 import TabTwoScreen from "../screens/TabTwoScreen";
-import { RootTabParamList } from "../types";
 
 /**
- * A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.
- * https://reactnavigation.org/docs/bottom-tab-navigator
+ * This navigator is horizontally swipeable and can be placed at the top or bottom of the screen
  */
-const BottomTab = createMaterialBottomTabNavigator<RootTabParamList>();
+const BottomTab = createMaterialTopTabNavigator<RootTabParamList>();
 
-export default function BottomTabV1() {
+export default function BottomTabNavigator() {
   return (
-    <BottomTab.Navigator initialRouteName="TabOne" shifting={true}>
+    <BottomTab.Navigator
+      initialRouteName="TabOne"
+      tabBarPosition="bottom"
+      screenOptions={{
+        tabBarLabelStyle: { textTransform: "none" },
+      }}
+    >
       <BottomTab.Screen
         name="TabOne"
         component={TabOneScreen}

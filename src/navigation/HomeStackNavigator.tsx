@@ -2,10 +2,10 @@ import * as React from "react";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
+import { HomeStackParamList } from "../../types";
 import LoginScreen from "../screens/LoginScreen";
 import ModalScreen from "../screens/ModalScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
-import { HomeStackParamList } from "../types";
 import BottomTabNavigator from "./BottomTabShifting";
 
 /**
