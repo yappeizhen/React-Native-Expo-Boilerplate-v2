@@ -13,7 +13,7 @@ import TabTwoScreen from "../screens/TabTwoScreen";
  */
 const BottomTab = createMaterialTopTabNavigator<RootTabParamList>();
 
-export default function BottomTabNavigator() {
+export default function BottomTabSwipeable() {
   return (
     <BottomTab.Navigator
       initialRouteName="TabOne"

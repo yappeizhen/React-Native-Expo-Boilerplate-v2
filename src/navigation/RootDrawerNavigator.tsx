@@ -17,6 +17,7 @@ import { auth } from "../firebase/firebase";
 import { useAuthState } from "../hooks/useAuthState";
 import useColorScheme from "../hooks/useColorScheme";
 import AboutUsScreen from "../screens/AboutUsScreen";
+import { toggles } from "../toggles";
 import AuthStackNavigator from "./AuthStackNavigator";
 import HomeStackNavigator from "./HomeStackNavigator";
 
@@ -107,7 +108,7 @@ const renderAppStack = (colorScheme: NonNullable<ColorSchemeName>) => {
 export default function RootDrawerNavigator() {
   const colorScheme = useColorScheme();
   const { user } = useAuthState();
-  if (user) {
+  if (user || !toggles.enableAuth) {
     return renderAppStack(colorScheme);
   } else {
     return <AuthStackNavigator />;
