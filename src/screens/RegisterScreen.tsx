@@ -5,28 +5,31 @@ import { StyleSheet, View } from "react-native";
 
 import CustomButton from "../components/CustomButton";
 import CustomTextInput from "../components/CustomInputText";
+import CustomSnackBar from "../components/CustomSnackBar";
 import * as firebase from "../firebase/firebase";
 
 export default function LoginScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const [snackIsVisible, setSnackIsVisible] = useState<boolean>(false);
+  const [snackMessage, setSnackMessage] = useState<string>("");
+
   const auth = firebase.auth;
   const handleSignup = () => {
     createUserWithEmailAndPassword(auth, email.trim(), password)
-      .then(() => {
-        console.log("User account created and signed in!");
+      .then((userCredential) => {
+        console.log(userCredential.user.email, "signed in successfully");
       })
       .catch((error: any) => {
         if (error.code === "auth/email-already-in-use") {
-          console.log("That email address is already in use!");
+          setSnackMessage("Email already in use");
+        } else if (error.code === "auth/invalid-email") {
+          setSnackMessage("Please enter a valid email address");
+        } else {
+          setSnackMessage(error.message);
         }
-
-        if (error.code === "auth/invalid-email") {
-          console.log("That email address is invalid!");
-        }
-
-        console.error(error);
+        setSnackIsVisible(true);
       });
   };
 
@@ -44,6 +47,7 @@ export default function LoginScreen() {
         <CustomTextInput
           label="Password"
           onChangeText={setPassword}
+          secureTextEntry={true}
           value={password}
         />
       </View>
@@ -62,6 +66,14 @@ export default function LoginScreen() {
           SIGN UP
         </CustomButton>
       </View>
+      <CustomSnackBar
+        visible={snackIsVisible}
+        onDismiss={() => {
+          setSnackIsVisible(false);
+        }}
+        type="error"
+        message={snackMessage}
+      ></CustomSnackBar>
     </View>
   );
 }
